@@ -40,20 +40,13 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
     public static final String EXTRA_PARAM_ID = "place_id";
     public static final String NAV_BAR_VIEW_NAME = Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME;
-    private ListView mList;
     private ImageView mImageView;
     private TextView mTitle;
     private LinearLayout mTitleHolder;
     private Palette mPalette;
     private ImageButton mAddButton;
-    private Animatable mAnimatable;
     private LinearLayout mRevealView;
-    private EditText mEditTextTodo;
-    private boolean isEditTextVisible;
-    private InputMethodManager mInputManager;
     private Place mPlace;
-    private ArrayList<String> mTodoList;
-    private ArrayAdapter mToDoAdapter;
     int defaultColorForRipple;
 
     @Override
@@ -63,24 +56,16 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
         mPlace = PlaceData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
 
-        mList = (ListView) findViewById(R.id.list);
         mImageView = (ImageView) findViewById(R.id.placeImage);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.placeNameHolder);
         mAddButton = (ImageButton) findViewById(R.id.btn_add);
         mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
-        mEditTextTodo = (EditText) findViewById(R.id.etTodo);
 
         mAddButton.setImageResource(R.drawable.icn_morph_reverse);
         mAddButton.setOnClickListener(this);
         defaultColorForRipple = getResources().getColor(R.color.primary_dark);
-        mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mRevealView.setVisibility(View.INVISIBLE);
-        isEditTextVisible = false;
-
-        mTodoList = new ArrayList<>();
-        mToDoAdapter = new ArrayAdapter(this, R.layout.row_todo, mTodoList);
-        mList.setAdapter(mToDoAdapter);
 
         loadPlace();
         windowTransition();
@@ -109,10 +94,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         return fade;
-    }
-
-    private void addToDo(String todo) {
-        mTodoList.add(todo);
     }
 
     private void getPhoto() {
@@ -147,54 +128,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_add:
-                if (!isEditTextVisible) {
-                    revealEditText(mRevealView);
-                    mEditTextTodo.requestFocus();
-                    mInputManager.showSoftInput(mEditTextTodo, InputMethodManager.SHOW_IMPLICIT);
-                    mAddButton.setImageResource(R.drawable.icn_morp);
-                    mAnimatable = (Animatable) (mAddButton).getDrawable();
-                    mAnimatable.start();
-                    applyRippleColor(getResources().getColor(R.color.light_green), getResources().getColor(R.color.dark_green));
-                } else {
-                    addToDo(mEditTextTodo.getText().toString());
-                    mToDoAdapter.notifyDataSetChanged();
-                    mInputManager.hideSoftInputFromWindow(mEditTextTodo.getWindowToken(), 0);
-                    hideEditText(mRevealView);
-                    mAddButton.setImageResource(R.drawable.icn_morph_reverse);
-                    mAnimatable = (Animatable) (mAddButton).getDrawable();
-                    mAnimatable.start();
-                    applyRippleColor(mPalette.getVibrantColor(defaultColorForRipple),
-                            mPalette.getDarkVibrantColor(defaultColorForRipple));
-                }
-        }
-    }
-
-    private void revealEditText(LinearLayout view) {
-        int cx = view.getRight() - 30;
-        int cy = view.getBottom() - 60;
-        int finalRadius = Math.max(view.getWidth(), view.getHeight());
-        Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-        view.setVisibility(View.VISIBLE);
-        isEditTextVisible = true;
-        anim.start();
-    }
-
-    private void hideEditText(final LinearLayout view) {
-        int cx = view.getRight() - 30;
-        int cy = view.getBottom() - 60;
-        int initialRadius = view.getWidth();
-        Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initialRadius, 0);
-        anim.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                view.setVisibility(View.INVISIBLE);
-            }
-        });
-        isEditTextVisible = false;
-        anim.start();
     }
 
     @Override

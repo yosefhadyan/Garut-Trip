@@ -39,7 +39,7 @@ public class TempatWisataAdapter extends RecyclerView.Adapter<TempatWisataAdapte
         final Place place = new PlaceData().placeList().get(position);
 
         holder.placeName.setText(place.name);
-        Picasso.with(mContext).load(place.getImageResourceId(mContext)).into(holder.placeImage);
+        Picasso.with(mContext).load("https://2.bp.blogspot.com/-eHtej6RR2bo/WDGsf8MqHrI/AAAAAAAAAUQ/XJAu-uVmVxIWwtZumvqJgQKk1M_jeUvDwCLcB/s1600/borabora.jpg").into(holder.placeImage);
 
         Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), place.getImageResourceId(mContext));
 

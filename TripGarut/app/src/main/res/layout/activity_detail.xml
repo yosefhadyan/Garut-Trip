@@ -70,19 +70,65 @@
 
     </FrameLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="-10dp"
-        android:text="MY ACTIVITIES"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/white" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:requiresFadingEdge="vertical" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Objek Wisata"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pantai sayang heulang adalah objek wisata alam yang terlatak di kecamatan Mancagahar. sadasda adsdasd dasd dasd asdasd das daa sdasdas dasdas / dadas dasd as dasd. dasdas da da"
+                android:layout_gravity="center_vertical|right"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout2"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btnAkomodasi"
+                android:text="Near By"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+            </Button>
+
+
+            <Button
+                android:id="@+id/btnDirection"
+                android:text="Direction"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+            </Button>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>
