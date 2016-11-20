@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">TripGarut</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Tempat Wisata</string>
+    <string name="slide_1_desc">Jelajahi berbagai Tempat Wisata yang ada di Garut!</string>
+
+    <string name="slide_2_title">Rumah Makan</string>
+    <string name="slide_2_desc">Kunjungi Rumah Makan Khas yang hanya ada di Garut!</string>
+
+    <string name="slide_3_title">Penginapan</string>
+    <string name="slide_3_desc">Temukan Penginapan yang sesuai untuk kebutuhan istirahat anda!</string>
+
+    <string name="slide_4_title">Kesenian dan Budaya</string>
+    <string name="slide_4_desc">Kenali dan Pelajari macam-macam Kesenian dan Budaya yang ada di Garut!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="account">Account</string>
+</resources>
